@@ -1,18 +1,14 @@
 let
   pkgs = import ./pkgs.nix { };
-  backend = import ./backend.nix;
-  frontend = import ./frontend.nix;
-
+  backend = import ./backend;
+  frontend = import ./frontend;
 in pkgs.stdenv.mkDerivation {
   name = "transient-reports";
-
   buildInputs = [
-    backend.transient-reports
-    frontend.transient-reports
+    backend.transient-reports-backend
+    frontend.transient-reports-frontend
   ];
-
   shellHook = ''
-    mkdir -p ./static
-    ln -s ${frontend.transient-reports}/bin/transient-reports.jsexe static/out.jsexe
+    ln -s ${frontend.transient-reports-frontend}/bin/transient-reports-frontend.jsexe ./static
   '';
 }

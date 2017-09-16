@@ -1,5 +1,4 @@
 let
-  #pkgs = import ./pkgs.nix { };
   reflex-platform = import ./reflex-platform.nix {};
   pkgs = reflex-platform.nixpkgs;
 
@@ -30,11 +29,8 @@ let
       cabalCall  = name: path: addSrcFilter (self.callCabal2nix name path { });
       cabalCallE = name: path: addSrcFilter (justBrowserOutput (self.callCabal2nix name path { }));
     in rec {
-      ghcjs-perch = self.callPackage ./nixdeps/ghcjs-perch.nix {};
-      transient = self.callPackage ./nixdeps/transient.nix {};
-      transient-universe = self.callPackage ./nixdeps/transient-universe.nix {};
-      axiom = self.callPackage ./nixdeps/axiom.nix {};
-      transient-reports = cabalCallE "transient-reports" ./.;
+      transient-reports-api = cabalCall "transient-reports-api" ../api;
+      transient-reports-frontend = cabalCallE "transient-reports-frontend" ./.;
     }
   );
 in packages

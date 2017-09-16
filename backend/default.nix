@@ -1,5 +1,5 @@
 let
-  pkgs = import ./pkgs.nix { config = { allowUnfree = true; }; };
+  pkgs = import ../pkgs.nix { };
   # Utilities to modify haskell packages
   justStaticExecutables = pkgs.haskell.lib.justStaticExecutables;
   # Filter to exclude garbage from sources of derivations
@@ -16,11 +16,11 @@ let
   # Extend given packages set
   packages = pkgs.haskellPackages.extend (haskellPackagesNew: haskellPackagesOld:
       let
-        call = haskellPackagesNew.callPackage;
         cabalCall  = name: path: addSrcFilter (haskellPackagesNew.callCabal2nix name path { });
         cabalCallE = name: path: addSrcFilter (justStaticExecutables (haskellPackagesNew.callCabal2nix name path { }));
       in rec {
-        transient-reports = cabalCallE "transient-reports" ./.;
+        transient-reports-api = cabalCall "transient-reports-api" ../api;
+        transient-reports-backend = cabalCallE "transient-reports-backend" ./.;
       }
     );
 in packages

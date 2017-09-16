@@ -1,4 +1,4 @@
-name:           transient-reports
+name:           transient-reports-backend
 version:        0.1.0.0
 synopsis:       Web app for reports management
 description:    Please see README.md
@@ -16,9 +16,7 @@ library
     Web.Reports
   build-depends:
       base                        >= 4.7      && < 5
-    , axiom                       >= 0.4      && < 0.5
-    , transient                   >= 0.5      && < 0.6
-    , transient-universe          >= 0.4      && < 0.5
+    , transient-reports-api
   default-language: Haskell2010
 
 executable transient-reports
@@ -27,7 +25,4 @@ executable transient-reports
   default-language:    Haskell2010
   build-depends:
       base                          >= 4.7       && < 5
-    , transient-reports
-  
-  if impl(ghcjs >= 0.1)
-    ghc-options: -DGHCJS_BROWSER
+    , transient-reports-backend

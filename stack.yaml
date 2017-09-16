@@ -1,0 +1,7 @@
+# Stack file is held only for integration with ghc-mod, nix build system is
+# major one.
+resolver: lts-9.4
+packages:
+- api
+- backend
+- frontend
