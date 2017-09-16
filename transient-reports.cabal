@@ -1,0 +1,33 @@
+name:           transient-reports
+version:        0.1.0.0
+synopsis:       Web app for reports management
+description:    Please see README.md
+author:         Anton Gushcha
+maintainer:     ncrashed@gmail.com
+copyright:      Anton Gushcha 2017
+license:        MIT
+category:       Web
+build-type:     Simple
+cabal-version:  >= 1.10
+
+library
+  hs-source-dirs: src
+  exposed-modules:
+    Web.Reports
+  build-depends:
+      base                        >= 4.7      && < 5
+    , axiom                       >= 0.4      && < 0.5
+    , transient                   >= 0.5      && < 0.6
+    , transient-universe          >= 0.4      && < 0.5
+  default-language: Haskell2010
+
+executable transient-reports
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  build-depends:
+      base                          >= 4.7       && < 5
+    , transient-reports
+  
+  if impl(ghcjs >= 0.1)
+    ghc-options: -DGHCJS_BROWSER
