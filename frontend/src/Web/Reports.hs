@@ -2,5 +2,7 @@ module Web.Reports(
     app
   ) where
 
+import Reflex.Dom
+
 app :: IO ()
-app = pure ()
+app = mainWidget $ pure ()

@@ -9,6 +9,7 @@ in pkgs.stdenv.mkDerivation {
     frontend.transient-reports-frontend
   ];
   shellHook = ''
+    rm ./static
     ln -s ${frontend.transient-reports-frontend}/bin/transient-reports-frontend.jsexe ./static
   '';
 }

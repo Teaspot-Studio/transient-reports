@@ -21,6 +21,7 @@ let
       in rec {
         transient-reports-api = cabalCall "transient-reports-api" ../api;
         transient-reports-backend = cabalCallE "transient-reports-backend" ./.;
+        transient-reports-frontend = cabalCallE "transient-reports-frontend" ../frontend; # webkit version
       }
     );
 in packages
