@@ -16,13 +16,18 @@ packages:
   subdirs:
     - 'reflex-dom-core'
     - 'reflex-dom'
+#- '../reflex-material-bootstrap'
+- location:
+    git: https://github.com/hexresearch/reflex-material-bootstrap.git
+    commit: d487fe4282448cee2411057bb74c2495b7e43384
+  extra-dep: true
+
 extra-deps:
   - dependent-sum-template-0.0.0.6
   - ghcjs-dom-0.9.2.0
   - ghcjs-dom-jsaddle-0.9.2.0
   - gi-javascriptcore-4.0.14
   - gi-webkit2-4.0.14
-  #- haskell-gi-overloading-0.0
   - jsaddle-0.9.4.0
   - jsaddle-dom-0.9.2.0
   - jsaddle-webkit2gtk-0.9.0.0

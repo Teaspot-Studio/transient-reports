@@ -29,6 +29,7 @@ let
       cabalCall  = name: path: addSrcFilter (self.callCabal2nix name path { });
       cabalCallE = name: path: addSrcFilter (justBrowserOutput (self.callCabal2nix name path { }));
     in rec {
+      reflex-material-bootstrap = self.callPackage ../nixdeps/reflex-material-bootstrap.nix {};
       transient-reports-api = cabalCall "transient-reports-api" ../api;
       transient-reports-frontend = cabalCallE "transient-reports-frontend" ./.;
     }

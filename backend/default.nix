@@ -14,11 +14,12 @@ let
     });
 
   # Extend given packages set
-  packages = pkgs.haskellPackages.extend (haskellPackagesNew: haskellPackagesOld:
+  packages = pkgs.haskellPackages.extend (self: super:
       let
-        cabalCall  = name: path: addSrcFilter (haskellPackagesNew.callCabal2nix name path { });
-        cabalCallE = name: path: addSrcFilter (justStaticExecutables (haskellPackagesNew.callCabal2nix name path { }));
+        cabalCall  = name: path: addSrcFilter (self.callCabal2nix name path { });
+        cabalCallE = name: path: addSrcFilter (justStaticExecutables (self.callCabal2nix name path { }));
       in rec {
+        reflex-material-bootstrap = self.callPackage ../nixdeps/reflex-material-bootstrap.nix {};
         transient-reports-api = cabalCall "transient-reports-api" ../api;
         transient-reports-backend = cabalCallE "transient-reports-backend" ./.;
         transient-reports-frontend = cabalCallE "transient-reports-frontend" ../frontend; # webkit version

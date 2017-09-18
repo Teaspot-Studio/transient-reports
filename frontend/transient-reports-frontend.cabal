@@ -16,8 +16,9 @@ library
     Web.Reports
   build-depends:
       base                        >= 4.7      && < 5
-    , transient-reports-api
     , reflex-dom                  >= 0.4      && < 0.6
+    , reflex-material-bootstrap
+    , transient-reports-api
 
   default-language: Haskell2010
 
@@ -28,6 +29,3 @@ executable transient-reports-frontend
   build-depends:
       base                          >= 4.7       && < 5
     , transient-reports-frontend
-
-  if impl(ghcjs >= 0.1)
-    ghc-options: -DGHCJS_BROWSER
