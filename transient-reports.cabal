@@ -14,9 +14,14 @@ library
   hs-source-dirs: src
   exposed-modules:
     Web.Reports
+    Web.Reports.Aeson
+    Web.Reports.Types
   build-depends:
       base                        >= 4.7      && < 5
+    , aeson                       >= 1.0      && < 1.3
     , axiom                       >= 0.4      && < 0.5
+    , text                        >= 1.2      && < 1.3
+    , time                        >= 1.6      && < 1.7
     , transient                   >= 0.5      && < 0.6
     , transient-universe          >= 0.4      && < 0.5
   default-language: Haskell2010
@@ -28,6 +33,6 @@ executable transient-reports
   build-depends:
       base                          >= 4.7       && < 5
     , transient-reports
-  
+
   if impl(ghcjs >= 0.1)
     ghc-options: -DGHCJS_BROWSER
